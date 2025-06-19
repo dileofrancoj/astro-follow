@@ -10,7 +10,8 @@ services:
     env: python
     # If astro-finding.py is in a subfolder like 'python/', use:
     # rootDirectory: ./python
-    buildCommand: pip install -r requirements.txt # This line is crucial
+    buildCommand: python3 -m pip install -r requirements.txt && npm install && npm run build
+   # This line is crucial
     startCommand: python3 astro-finding.py # Or 'python' depending on Render's default alias
     envVars:
       - key: PYTHON_VERSION
