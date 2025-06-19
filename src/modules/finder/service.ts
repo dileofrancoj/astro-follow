@@ -24,7 +24,6 @@ function runPythonScript(arg: string, lat: string, lon: string, datetime:DateTim
   });
 }
 
-// Ejemplo de uso:
 export const getCoordinates = async (arg:string, lat:string, lon: string, datetime:DateTimeProps) => {
  try {
     const result = await runPythonScript(arg, lat, lon, datetime);

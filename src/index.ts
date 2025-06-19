@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import morgan from 'morgan'
 import cors from 'cors'
-import { logger } from './utils/logger';
+import { logger } from './utils';
 import routes from './api';
 import { validateRequiredHeaders } from './middlewares/validateHeaders';
 
