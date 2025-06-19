@@ -1,13 +1,14 @@
 import { execFile } from 'child_process';
+import { DateTimeProps } from '../../interfaces/DateTimeUTC';
 import path from 'path';
 
-function runPythonScript(arg: string, lat: string, lon: string): Promise<string> {
+
+function runPythonScript(arg: string, lat: string, lon: string, datetime:DateTimeProps): Promise<string> {
   return new Promise((resolve, reject) => {
     const scriptPath = path.join(__dirname, '../../../astro-finding.py');
-
     execFile(
       'python3',
-      [scriptPath, arg, lat, lon],
+      [scriptPath, arg, lat, lon, datetime.yearUTC, datetime.monthUTC, datetime.dayUTC,datetime.hourUTC, datetime.minuteUTC, datetime.secondUTC],
       {},
       (error, stdout, stderr) => {
         if (error) {
@@ -24,9 +25,9 @@ function runPythonScript(arg: string, lat: string, lon: string): Promise<string>
 }
 
 // Ejemplo de uso:
-export const getCoordinates = async (arg:string, lat:string, lon: string) => {
+export const getCoordinates = async (arg:string, lat:string, lon: string, datetime:DateTimeProps) => {
  try {
-    const result = await runPythonScript(arg, lat, lon);
+    const result = await runPythonScript(arg, lat, lon, datetime);
     return result
   } catch (error) {
     console.error(error);
